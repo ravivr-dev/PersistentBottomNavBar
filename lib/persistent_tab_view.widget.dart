@@ -15,7 +15,7 @@ class PersistentTabView extends PersistentTabViewBase {
       final Key? key,
       final List<PersistentBottomNavBarItem>? items,
       this.controller,
-      final double navBarHeight = kBottomNavigationBarHeight,
+      this.navBarHeight = kBottomNavigationBarHeight,
       this.margin = EdgeInsets.zero,
       this.backgroundColor = CupertinoColors.white,
       final ValueChanged<int>? onItemSelected,
@@ -87,6 +87,7 @@ class PersistentTabView extends PersistentTabViewBase {
     required this.screens,
     final Key? key,
     this.controller,
+        this.navBarHeight = kBottomNavigationBarHeight,
     this.margin = EdgeInsets.zero,
     this.floatingActionButton,
     this.resizeToAvoidBottomInset = false,
@@ -110,6 +111,7 @@ class PersistentTabView extends PersistentTabViewBase {
           key: key,
           context: context,
           screens: screens,
+          navBarHeight:navBarHeight ,
           controller: controller,
           margin: margin,
           routeAndNavigatorSettings: routeAndNavigatorSettings,
@@ -117,6 +119,7 @@ class PersistentTabView extends PersistentTabViewBase {
           floatingActionButton: floatingActionButton,
           customWidget: customWidget,
           itemCount: itemCount,
+
           resizeToAvoidBottomInset: resizeToAvoidBottomInset,
           bottomScreenMargin: bottomScreenMargin,
           onWillPop: onWillPop,
@@ -199,6 +202,11 @@ class PersistentTabView extends PersistentTabViewBase {
 
   @override
   final BuildContext context;
+
+  @override
+  final double navBarHeight ;
+
+
 }
 
 class PersistentTabViewBase extends StatefulWidget {
