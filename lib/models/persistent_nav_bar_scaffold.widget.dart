@@ -205,7 +205,7 @@ class _PersistentTabScaffoldState extends State<PersistentTabScaffold> {
           curve:
               widget.tabBar.hideNavigationBar! ? Curves.linear : Curves.easeIn,
           color: widget.tabBar.navBarDecoration!.colorBehindNavBar,
-          padding: EdgeInsets.only(bottom: contentPadding),
+          //padding: EdgeInsets.only(bottom: contentPadding),
           child: content,
         ),
       );
@@ -214,7 +214,7 @@ class _PersistentTabScaffoldState extends State<PersistentTabScaffold> {
         data: newMediaQuery,
         child: Container(
           color: Colors.transparent,
-          padding: EdgeInsets.only(bottom: contentPadding),
+          //padding: EdgeInsets.only(bottom: contentPadding),
           child: content,
         ),
       );
@@ -233,6 +233,8 @@ class _PersistentTabScaffoldState extends State<PersistentTabScaffold> {
           content,
           Positioned(
             bottom: 20,
+            left: 10,
+            right: 10,
             child: MediaQuery(
               data: existingMediaQuery.copyWith(textScaleFactor: 1),
               child: Align(
