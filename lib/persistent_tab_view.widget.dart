@@ -87,9 +87,10 @@ class PersistentTabView extends PersistentTabViewBase {
     required this.screens,
     final Key? key,
     this.controller,
-        this.navBarHeight = kBottomNavigationBarHeight,
+    this.navBarHeight = kBottomNavigationBarHeight,
     this.margin = EdgeInsets.zero,
     this.floatingActionButton,
+    final ValueChanged<int>? onItemSelected,
     this.resizeToAvoidBottomInset = false,
     this.bottomScreenMargin,
     this.selectedTabScreenContext,
@@ -111,7 +112,7 @@ class PersistentTabView extends PersistentTabViewBase {
           key: key,
           context: context,
           screens: screens,
-          navBarHeight:navBarHeight ,
+          navBarHeight: navBarHeight,
           controller: controller,
           margin: margin,
           routeAndNavigatorSettings: routeAndNavigatorSettings,
@@ -119,7 +120,7 @@ class PersistentTabView extends PersistentTabViewBase {
           floatingActionButton: floatingActionButton,
           customWidget: customWidget,
           itemCount: itemCount,
-
+          onItemSelected: onItemSelected,
           resizeToAvoidBottomInset: resizeToAvoidBottomInset,
           bottomScreenMargin: bottomScreenMargin,
           onWillPop: onWillPop,
@@ -204,9 +205,7 @@ class PersistentTabView extends PersistentTabViewBase {
   final BuildContext context;
 
   @override
-  final double navBarHeight ;
-
-
+  final double navBarHeight;
 }
 
 class PersistentTabViewBase extends StatefulWidget {
