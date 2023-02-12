@@ -43,8 +43,20 @@ class PersistentBottomNavBar extends StatelessWidget {
                     ),
                   )
                 : ClipRRect(
-          borderRadius: BorderRadius.circular(60),
-        )
+                    borderRadius: BorderRadius.circular(60),
+                    child: Container(
+                      color: navBarEssentials!.backgroundColor,
+                      child: SafeArea(
+                          top: false,
+                          bottom: navBarEssentials!.navBarHeight == 0.0 ||
+                                  (hideNavigationBar ?? false)
+                              ? false
+                              : confineToSafeArea ?? true,
+                          child: SizedBox(
+                              height: navBarEssentials!.navBarHeight,
+                              child: customNavBarWidget)),
+                    ),
+                  )
             : navBarStyle == NavBarStyle.style19
                 ? margin!.bottom > 0
                     ? SafeArea(
