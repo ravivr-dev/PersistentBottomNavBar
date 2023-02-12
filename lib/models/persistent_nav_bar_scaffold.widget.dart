@@ -213,7 +213,7 @@ class _PersistentTabScaffoldState extends State<PersistentTabScaffold> {
       content = MediaQuery(
         data: newMediaQuery,
         child: Container(
-          color: widget.tabBar.navBarDecoration!.colorBehindNavBar,
+          color: Colors.transparent,
           padding: EdgeInsets.only(bottom: contentPadding),
           child: content,
         ),
