@@ -7,6 +7,7 @@ class PersistentTabController extends ChangeNotifier {
         assert(initialIndex >= 0, "Value cannot be less than zero");
 
   bool _isDisposed = false;
+
   int get index => _index;
   int _index;
 
@@ -230,22 +231,27 @@ class _PersistentTabScaffoldState extends State<PersistentTabScaffold> {
       child: Stack(
         children: <Widget>[
           content,
-          MediaQuery(
-            data: existingMediaQuery.copyWith(textScaleFactor: 1),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: widget.tabBar.copyWith(
-                selectedIndex: _controller!.index,
-                onItemSelected: (final newIndex) {
-                  _controller!.index = newIndex;
-                  if (widget.tabBar.navBarEssentials!.onItemSelected != null) {
-                    setState(() {
-                      _selectedIndex = newIndex;
-                      _isTapAction = true;
-                      widget.tabBar.navBarEssentials!.onItemSelected!(newIndex);
-                    });
-                  }
-                },
+          Positioned(
+            bottom: 20,
+            child: MediaQuery(
+              data: existingMediaQuery.copyWith(textScaleFactor: 1),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: widget.tabBar.copyWith(
+                  selectedIndex: _controller!.index,
+                  onItemSelected: (final newIndex) {
+                    _controller!.index = newIndex;
+                    if (widget.tabBar.navBarEssentials!.onItemSelected !=
+                        null) {
+                      setState(() {
+                        _selectedIndex = newIndex;
+                        _isTapAction = true;
+                        widget
+                            .tabBar.navBarEssentials!.onItemSelected!(newIndex);
+                      });
+                    }
+                  },
+                ),
               ),
             ),
           ),
