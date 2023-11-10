@@ -23,7 +23,8 @@ class PersistentBottomNavBar extends StatelessWidget {
   final Widget? customNavBarWidget;
   final bool? confineToSafeArea;
   final bool? hideNavigationBar;
-  final Function(bool, bool)? onAnimationComplete;
+  final Function({required bool isAnimating, required bool isComplete})?
+      onAnimationComplete;
   final bool? isCustomWidget;
 
   Padding _navBarWidget() => Padding(
@@ -180,8 +181,10 @@ class PersistentBottomNavBar extends StatelessWidget {
       : OffsetAnimation(
           hideNavigationBar: hideNavigationBar,
           navBarHeight: navBarEssentials!.navBarHeight,
-          onAnimationComplete: (final isAnimating, final isComplete) {
-            onAnimationComplete!(isAnimating, isComplete);
+          onAnimationComplete: (
+              {required final isAnimating, required final isComplete}) {
+            onAnimationComplete!(
+                isAnimating: isAnimating, isComplete: isComplete);
           },
           child: _navBarWidget(),
         );
@@ -218,9 +221,7 @@ class PersistentBottomNavBar extends StatelessWidget {
           navBarStyle: navBarStyle ?? this.navBarStyle,
           hideNavigationBar: hideNavigationBar ?? this.hideNavigationBar,
           customNavBarWidget: customNavBarWidget ?? this.customNavBarWidget,
-          onAnimationComplete:
-              onAnimationComplete as dynamic Function(bool, bool)? ??
-                  this.onAnimationComplete,
+          onAnimationComplete: this.onAnimationComplete,
           navBarEssentials: navBarEssentials ?? this.navBarEssentials,
           isCustomWidget: isCustomWidget ?? this.isCustomWidget,
           navBarDecoration: navBarDecoration ?? this.navBarDecoration);

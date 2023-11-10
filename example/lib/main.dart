@@ -1,15 +1,14 @@
 import "package:flutter/material.dart";
 import "package:persistent_bottom_nav_bar/persistent_tab_view.dart";
-
 import "package:persistent_bottom_nav_bar_example_project/custom-widget-tabs.widget.dart";
 import "package:persistent_bottom_nav_bar_example_project/screens.dart";
 
 void main() => runApp(const MyApp());
 
-BuildContext testContext;
+BuildContext? testContext;
 
 class MyApp extends StatelessWidget {
-  const MyApp({final Key key}) : super(key: key);
+  const MyApp({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) => MaterialApp(
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MainMenu extends StatefulWidget {
-  const MainMenu({final Key key}) : super(key: key);
+  const MainMenu({final Key? key}) : super(key: key);
 
   @override
   _MainMenuState createState() => _MainMenuState();
@@ -75,7 +74,7 @@ class _MainMenuState extends State<MainMenu> {
 // ----------------------------------------- Provided Style ----------------------------------------- //
 
 class ProvidedStylesExample extends StatefulWidget {
-  const ProvidedStylesExample({final Key key, this.menuScreenContext})
+  const ProvidedStylesExample({required this.menuScreenContext, final Key? key})
       : super(key: key);
   final BuildContext menuScreenContext;
 
@@ -84,8 +83,8 @@ class ProvidedStylesExample extends StatefulWidget {
 }
 
 class _ProvidedStylesExampleState extends State<ProvidedStylesExample> {
-  PersistentTabController _controller;
-  bool _hideNavBar;
+  late PersistentTabController _controller;
+  late bool _hideNavBar;
 
   @override
   void initState() {
@@ -206,11 +205,11 @@ class _ProvidedStylesExampleState extends State<ProvidedStylesExample> {
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(title: const Text("Navigation Bar Demo")),
-        drawer: Drawer(
+        drawer: const Drawer(
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Text("This is the Drawer"),
               ],
             ),
@@ -228,7 +227,7 @@ class _ProvidedStylesExampleState extends State<ProvidedStylesExample> {
           bottomScreenMargin: 0,
           onWillPop: (final context) async {
             await showDialog(
-              context: context,
+              context: context!,
               useSafeArea: true,
               builder: (final context) => Container(
                 height: 50,
@@ -268,9 +267,9 @@ class _ProvidedStylesExampleState extends State<ProvidedStylesExample> {
 class CustomNavBarWidget extends StatelessWidget {
   const CustomNavBarWidget(
     this.items, {
-    final Key key,
-    this.selectedIndex,
-    this.onItemSelected,
+    required this.selectedIndex,
+    required this.onItemSelected,
+    final Key? key,
   }) : super(key: key);
   final int selectedIndex;
   final List<PersistentBottomNavBarItem> items;
@@ -301,7 +300,7 @@ class CustomNavBarWidget extends StatelessWidget {
                 type: MaterialType.transparency,
                 child: FittedBox(
                     child: Text(
-                  item.title,
+                  item.title != null ? item.title! : "",
                   style: TextStyle(
                       color: isSelected
                           ? (item.activeColorSecondary ??

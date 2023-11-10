@@ -2,18 +2,19 @@ part of persistent_bottom_nav_bar;
 
 class OffsetAnimation extends StatefulWidget {
   const OffsetAnimation(
-      {final Key? key,
+      { this.onAnimationComplete,
+      final Key? key,
       this.child,
       this.hideNavigationBar,
       this.navBarHeight,
-      this.onAnimationComplete,
       this.extendedLength = false})
       : super(key: key);
   final Widget? child;
   final bool? hideNavigationBar;
   final double? navBarHeight;
   final bool extendedLength;
-  final Function(bool, bool)? onAnimationComplete;
+  final Function({required bool isAnimating, required bool isComplete})?
+      onAnimationComplete;
 
   @override
   _OffsetAnimationState createState() => _OffsetAnimationState();
@@ -40,8 +41,9 @@ class _OffsetAnimationState extends State<OffsetAnimation>
     _hideAnimation();
 
     _navBarHideAnimationController.addListener(() {
-      widget.onAnimationComplete!(_navBarHideAnimationController.isAnimating,
-          _navBarHideAnimationController.isCompleted);
+      widget.onAnimationComplete!(
+          isAnimating: _navBarHideAnimationController.isAnimating,
+          isComplete: _navBarHideAnimationController.isCompleted);
     });
   }
 

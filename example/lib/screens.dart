@@ -1,13 +1,10 @@
 import "package:flutter/material.dart";
 import "package:persistent_bottom_nav_bar/persistent_tab_view.dart";
-
 import "package:persistent_bottom_nav_bar_example_project/modal_screen.dart";
 
 class MainScreen extends StatelessWidget {
   const MainScreen(
-      {final Key key,
-      this.menuScreenContext,
-      this.onScreenHideButtonPressed,
+      {required this.menuScreenContext, required this.onScreenHideButtonPressed, final Key? key,
       this.hideStatus = false})
       : super(key: key);
   final BuildContext menuScreenContext;
@@ -144,7 +141,7 @@ class MainScreen extends StatelessWidget {
 }
 
 class MainScreen2 extends StatelessWidget {
-  const MainScreen2({final Key key}) : super(key: key);
+  const MainScreen2({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) => Scaffold(
@@ -156,7 +153,8 @@ class MainScreen2 extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   PersistentNavBarNavigator.pushNewScreen(context,
-                      screen: const MainScreen3());
+                      screen: const MainScreen3(
+                      ));
                 },
                 child: const Text(
                   "Go to Third Screen",
@@ -179,7 +177,7 @@ class MainScreen2 extends StatelessWidget {
 }
 
 class MainScreen3 extends StatelessWidget {
-  const MainScreen3({final Key key}) : super(key: key);
+  const MainScreen3({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) => Scaffold(

@@ -87,7 +87,7 @@ class PersistentTabView extends PersistentTabViewBase {
     required this.screens,
     final Key? key,
     this.controller,
-        this.navBarHeight = kBottomNavigationBarHeight,
+    this.navBarHeight = kBottomNavigationBarHeight,
     this.margin = EdgeInsets.zero,
     this.floatingActionButton,
     this.resizeToAvoidBottomInset = false,
@@ -111,7 +111,7 @@ class PersistentTabView extends PersistentTabViewBase {
           key: key,
           context: context,
           screens: screens,
-          navBarHeight:navBarHeight ,
+          navBarHeight: navBarHeight,
           controller: controller,
           margin: margin,
           routeAndNavigatorSettings: routeAndNavigatorSettings,
@@ -119,7 +119,6 @@ class PersistentTabView extends PersistentTabViewBase {
           floatingActionButton: floatingActionButton,
           customWidget: customWidget,
           itemCount: itemCount,
-
           resizeToAvoidBottomInset: resizeToAvoidBottomInset,
           bottomScreenMargin: bottomScreenMargin,
           onWillPop: onWillPop,
@@ -204,9 +203,7 @@ class PersistentTabView extends PersistentTabViewBase {
   final BuildContext context;
 
   @override
-  final double navBarHeight ;
-
-
+  final double navBarHeight;
 }
 
 class PersistentTabViewBase extends StatefulWidget {
@@ -650,15 +647,16 @@ class _PersistentTabViewState extends State<PersistentTabView> {
           navBarStyle: widget.navBarStyle,
           neumorphicProperties: widget.neumorphicProperties,
           customNavBarWidget: widget.customWidget,
-          onAnimationComplete: (final isAnimating, final isCompleted) {
+          onAnimationComplete: (
+              {required final isAnimating, required final isComplete}) {
             if (_isAnimating != isAnimating) {
               setState(() {
                 _isAnimating = isAnimating;
               });
             }
-            if (_isCompleted != isCompleted) {
+            if (_isCompleted != isComplete) {
               setState(() {
-                _isCompleted = isCompleted;
+                _isCompleted = isComplete;
               });
             }
           },
