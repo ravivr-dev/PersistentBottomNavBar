@@ -228,7 +228,6 @@ class _ProvidedStylesExampleState extends State<ProvidedStylesExample> {
           onWillPop: (final context) async {
             await showDialog(
               context: context!,
-              useSafeArea: true,
               builder: (final context) => Container(
                 height: 50,
                 width: 50,
